@@ -13,4 +13,6 @@ class Identity < ApplicationRecord
   ]
 
   has_many :posts, foreign_key: :author_id
+
+  has_many :replies, foreign_key: :author_id
 end

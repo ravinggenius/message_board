@@ -1,6 +1,14 @@
 <h1><%= @post.title %></h1>
 
+<%= link_to 'New Reply', new_post_reply_path(@post), class: 'btn btn-default' %>
+
 <p>posted by <strong><%= @post.author.email %></strong><br />
 on <%= @post.published_at.to_s(:long) %> | <%= link_to 'Edit', edit_post_path(@post) %></p>
 
 <%= render_to_html(@post.body) %>
+
+<hr />
+
+<h2>Replies</h2>
+
+<%= render @post.replies.sorted, post: @post %>
