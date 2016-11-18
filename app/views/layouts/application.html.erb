@@ -20,7 +20,7 @@
         </ul>
 
         <% if identity_signed_in? %>
-          <p class="navbar-text pull-right"><%= current_identity.email %> | <%= link_to 'Logout', destroy_identity_session_path, method: :delete %></p>
+          <p class="navbar-text pull-right"><%= gravatar_tag current_identity.email, :default %> <%= current_identity.email %> | <%= link_to 'Logout', destroy_identity_session_path, method: :delete %></p>
         <% end %>
       </div>
     </div>
