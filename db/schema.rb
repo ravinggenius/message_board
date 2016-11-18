@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118173707) do
+ActiveRecord::Schema.define(version: 20161118193911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,4 +32,15 @@ ActiveRecord::Schema.define(version: 20161118173707) do
     t.index ["reset_password_token"], name: "index_identities_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.integer  "author_id",    null: false
+    t.string   "title",        null: false
+    t.text     "body",         null: false
+    t.datetime "published_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["author_id"], name: "index_posts_on_author_id", using: :btree
+  end
+
+  add_foreign_key "posts", "identities", column: "author_id", on_delete: :cascade
 end

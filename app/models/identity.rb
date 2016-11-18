@@ -11,4 +11,6 @@ class Identity < ApplicationRecord
     :trackable,
     :validatable
   ]
+
+  has_many :posts, foreign_key: :author_id
 end

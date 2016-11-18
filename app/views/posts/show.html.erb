@@ -1,0 +1,6 @@
+<h1><%= @post.title %></h1>
+
+<p>posted by <strong><%= @post.author.email %></strong><br />
+on <%= @post.published_at.to_s(:long) %> | <%= link_to 'Edit', edit_post_path(@post) %></p>
+
+<%= render_to_html(@post.body) %>
