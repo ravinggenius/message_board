@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :identities
 
-  resources :posts do
+  resources :posts, except: :destroy do
     resources :replies, only: :create
   end
 

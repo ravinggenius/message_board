@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update]
   before_action :set_reply, only: :show
 
   # GET /posts
@@ -38,12 +38,6 @@ class PostsController < ApplicationController
     else
       render :edit
     end
-  end
-
-  # DELETE /posts/1
-  def destroy
-    @post.destroy
-    redirect_to posts_url, notice: 'Post was successfully destroyed.'
   end
 
   private
