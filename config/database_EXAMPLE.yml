@@ -1,0 +1,19 @@
+---
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: thomas
+  password:
+
+development:
+  <<: *default
+  database: message_board_development
+
+test:
+  <<: *default
+  database: message_board_test
+
+production:
+  <<: *default
+  database: message_board_production
