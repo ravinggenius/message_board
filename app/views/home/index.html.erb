@@ -1,1 +1,4 @@
+<p>You are signed in as <%= current_identity.email %>.</p>
+<%= button_to 'Logout', destroy_identity_session_path, method: :delete %>
+
 <p>Messages are coming soon.</p>
