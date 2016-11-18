@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
+  before_action :verify_post_owner, only: [:edit, :update]
   before_action :set_reply, only: :show
 
   # GET /posts
@@ -54,5 +55,17 @@ class PostsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def edit_allowed?(post)
+    post.author == current_identity
+  end
+  helper_method :edit_allowed?
+
+  def verify_post_owner
+    unless edit_allowed?(@post)
+      flash[:notice] = 'You do not have permission to do that'
+      redirect_to @post
+    end
   end
 end
