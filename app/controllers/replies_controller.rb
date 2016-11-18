@@ -1,15 +1,5 @@
 class RepliesController < ApplicationController
   before_action :set_post
-  before_action :set_reply, only: [:new, :create]
-
-  # GET /replies/1
-  def show
-  end
-
-  # GET /replies/new
-  def new
-    @reply = Reply.new
-  end
 
   # POST /replies
   def create
@@ -18,7 +8,7 @@ class RepliesController < ApplicationController
     if @reply.save
       redirect_to @post, notice: 'Reply was successfully created.'
     else
-      render :new
+      redirect_to @post
     end
   end
 
@@ -26,11 +16,6 @@ class RepliesController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
-  end
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_reply
-    @reply = @post.replies.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
