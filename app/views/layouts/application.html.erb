@@ -9,9 +9,29 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to 'Message Board', root_path, class: 'navbar-brand' %>
+        </div>
 
-    <%= yield %>
+        <ul class="nav navbar-nav">
+          <li class="active"><%= link_to 'Home', root_path %></li>
+        </ul>
+
+        <% if identity_signed_in? %>
+          <p class="navbar-text pull-right"><%= current_identity.email %> | <%= link_to 'Logout', destroy_identity_session_path, method: :delete %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
